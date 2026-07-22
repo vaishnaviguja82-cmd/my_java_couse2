@@ -1,0 +1,19 @@
+class Solution {
+    public boolean isPalindrome(int x) {
+        // Negative numbers and numbers ending in 0 (except 0 itself) cannot be palindromes
+        if (x < 0 || (x % 10 == 0 && x != 0)) {
+            return false;
+        }
+
+        int revertedNumber = 0;
+        // Loop runs until we have processed half of the digits
+        while (x > revertedNumber) {
+            revertedNumber = (revertedNumber * 10) + (x % 10);
+            x /= 10;
+        }
+
+        // For even-length numbers: x == revertedNumber (e.g., 1221 -> x=12, revertedNumber=12)
+        // For odd-length numbers: x == revertedNumber / 10 (e.g., 121 -> x=1, revertedNumber=12)
+        return x == revertedNumber || x == revertedNumber / 10;
+    }
+}
